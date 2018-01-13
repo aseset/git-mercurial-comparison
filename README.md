@@ -8,3 +8,19 @@ Usporedba Git i Mercurial sustava za upravljanje inačicama - projekt za kolegij
 - Iva Ličina
 
 - Antonio Šešet
+
+## bilješke
+
+### komande u Gitu
+
+- init
+
+- status, add, commmit
+
+- diff, show, log
+
+- branch, checkout, merge, rebase
+
+- stash
+
+- clone, remote, fetch, push, pull
