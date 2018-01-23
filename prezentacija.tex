@@ -3,10 +3,9 @@
 \usepackage[croatian]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{color}
-\usepackage{listings}
-
-% Information to be included in the title page:
-
+%\usepackage{listings}
+ 
+%Information to be included in the title page:
 \title{Usporedba Git i Mercurial sustava za upravljanje inačicama - projekt za kolegij Računalne vještine 2017/2018}
 \author{Marina Banov, Iva Ličina, Antonio Šešet}
 \institute{Tehnički fakultet u Rijeci}
@@ -26,30 +25,38 @@
 
 	\begin{frame}
 		\frametitle{Naredba za kreiranje novog  repozitorija}
-		\begin{itemize}
-			\item Prije početka rada sa Git ili Mercurial sustavom za upravljanjem inačica, moramo inicijalizirati sustav, tj. kreirati repozitorij.		
-			\item U Mercurial sustavu koristimo naredbu \textbf{hg init} pomoću koje u direktoriju gdje se korisnik trenutno nalazi, kreira prazan repozitorij i  potrebne datoteke za rad repozitorija. 
-			\item U Git sustavu naredba \textbf{git init} stvara prazan git repozitorij, sa poddirektorijima koji sadrže datoteke neophodne za rad repozitorija.
-			\item Već pri samoj inicijalizaciji Mercurial i Git sustava možemo uočiti njihove sličnosti.
+		 \begin{itemize}
+			  \item Prije početka rada sa Git ili Mercurial sustavima za upravljanjem inačica, moramo inicijalizirati sustav, tj. kreirati repozitorij.		
+			  \item U Mercurial sustavu koristimo naredbu \textbf{hg init} pomoću koje se u direktoriju gdje se korisnik trenutno nalazi, kreira prazan repozitorij i  potrebne datoteke za rad repozitorija. 
+			  \item U Git sustavu naredba \textbf{git init} stvara prazan git repozitorij, sa poddirektorijima koji sadrže datoteke neophodne za rad repozitorija.
+			  \item Već pri samoj inicijalizaciji Mercurial i Git sustava možemo uočiti njihove sličnosti.
 		\end{itemize}
 	\end{frame}
 
 	\begin{frame}
-		\frametitle{Naredbe za dodavanje datoteka u repozitorij i provjeru stanja(1/4)}
+		\frametitle{Naredbe za dodavanje datoteka u repozitorij i provjeru stanja(1/5)}
 		 \begin{itemize}
 			  \item Nakon što je korisnik inicijalizirao repozitorij, može početi sa radom na njemu. Prvi korak ka tome je dodavanje datoteka u repozitorij.
 			  \item Git i Mercurial rade na istom principu; oba sustava imaju:
 				  \begin{itemize}
-					  \item \textbf{Radni direktorij} - mjesto gdje korisnik vrši sve operacije nad datotekama
-					  \item \textbf{Stage} - područje gdje korisnik stavlja sve datoteke koje će sa sljedećim \textbf{\textit{commitom}} poslati u repozitorij
-					  \item \textbf{Repozitorij} - mjesto gdje su sve datoteke (i njihove prethodne verzije, ukoliko postoje) pohranjene.
+					  \item \textbf{Git: Radni direktorij; Mercurial: Secret Phase} - mjesto gdje korisnik vrši sve operacije nad datotekama i koje samo korisnik vidi
+					  \item \textbf{Git: Stage, Mercurial; Draft} - područje gdje korisnik stavlja sve datoteke koje će sa sljedećim \textbf{\textit{commitom}} poslati u repozitorij
+					  \item \textbf{Git: Repozitorij; Mercurial: Public} - mjesto gdje su sve datoteke (i njihove prethodne verzije, ukoliko postoje) pohranjene.
 				  \end{itemize}
-			\item U oba sustava korisnik uvijek radi na nekom projektu u \textbf{Radnom direktoriju} gdje kreira nove datoteke, uređuje ili briše stare itd., te kad želi pohraniti podatke sa kojima je završio raditi u repozitorij on ih prvo dodaje u \textbf{Stage}.
+			
 		  \end{itemize}
 	\end{frame}
 
 	\begin{frame}
-		\frametitle{Naredbe za dodavanje datoteka u repozitorij i provjeru stanja(2/4)}
+		\frametitle{Naredbe za dodavanje datoteka u repozitorij i provjeru stanja(2/5)}
+		 \begin{itemize}
+			
+			\item U oba sustava korisnik uvijek radi na nekom projektu u \textbf{Radnom direktoriju (Git)}, odnosno \textbf{Secret Phase (Mercurial)} gdje kreira nove datoteke, uređuje ili briše stare itd., te kad želi pohraniti podatke sa kojima je završio raditi u repozitorij on ih prvo dodaje u \textbf{Stage (Git)}, tj. \textbf{Draft(Mercurial)}.
+		  \end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Naredbe za dodavanje datoteka u repozitorij i provjeru stanja(3/5)}
  		\begin{itemize}
   		  	\item No prije nego što korisnik doda datoteke u \textbf{Stage}, bilo bi dobro da pomoću naredbe \textbf{status} provjeri stanje datoteka.
 			\item Sintaksa za to u Mercurial-u glasi:
@@ -61,7 +68,7 @@
 	\end{frame}
 
 	\begin{frame}
-		\frametitle{Naredbe za dodavanje datoteka u repozitorij i provjeru stanja(3/4)}
+		\frametitle{Naredbe za dodavanje datoteka u repozitorij i provjeru stanja(4/5)}
  		\begin{itemize}
   		  	\item Sintaksa u Git-u glasi:
 			\begin{itemize}
@@ -72,7 +79,7 @@
 	\end{frame}
 
 	\begin{frame}
-		\frametitle{Naredbe za dodavanje datoteka u repozitorij i provjeru stanja(4/4)}
+		\frametitle{Naredbe za dodavanje datoteka u repozitorij i provjeru stanja(5/5)}
  		\begin{itemize}
 			\item Iz navedenih naredbi i njihovih sintaksi može se vidjeti velika sličnost između Mercurial i Git sustava, što nije ni čudno sa obzirom da je i sama struktura ova dva sustava gotovo identična.
 			\item I jedan i drugi imaju isti tijek rada, tj. korisnik prvo obavlja operacije nad datotekama u \textbf{Radnom Direktoriju}, zatim datoteke za koje smatra da su spremne za slanje u repozitorij prosljeđuje u \textbf{Stage}, a nakon toga svoje datoteke pohranjuje u \textbf{Repozitorij} pomoću naredbe \textbf{commit}.
