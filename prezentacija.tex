@@ -1,0 +1,157 @@
+\documentclass{beamer}
+\usetheme{Berlin}
+\usepackage[croatian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{listings}
+
+% Information to be included in the title page:
+\title{Usporedba Git i Mercurial sustava za upravljanje inačicama - projekt za kolegij Računalne vještine 2017/2018}
+\author{Marina Banov, Iva Ličina, Antonio Šešet}
+\institute{Tehnički fakultet u Rijeci}
+\date{2018}
+ 
+\begin{document}
+ 
+	\frame{\titlepage}
+ 
+	\begin{frame}
+		\frametitle{Ukratko o Mercurial i Git sustavima}
+		 \begin{itemize}
+			\item Mercurial i Git su distribuirani sustavi za upravljanje inačicama.
+			\item Second item.
+			\item Third item.
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Naredba za kreiranje novog  repozitorija}
+		\begin{itemize}
+			\item Prije početka rada sa Git ili Mercurial sustavom za upravljanjem inačica, moramo inicijalizirati sustav, tj. kreirati repozitorij.		
+			\item U Mercurial sustavu koristimo naredbu \textbf{hg init} pomoću koje u direktoriju gdje se korisnik trenutno nalazi, kreira prazan repozitorij i  potrebne datoteke za rad repozitorija. 
+			\item U Git sustavu naredba \textbf{git init} stvara prazan git repozitorij, sa poddirektorijima koji sadrže datoteke neophodne za rad repozitorija.
+			\item Već pri samoj inicijalizaciji Mercurial i Git sustava možemo uočiti njihove sličnosti.
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Naredba za dodavanje datoteka u repozitorij i provjeru stanja}
+		\begin{itemize}
+			\item Nakon što je korisnik inicijalizirao repozitorij, može početi sa radom na njemu. Prvi korak ka tome je dodavanje datoteka u repozitorij.
+			\item Git i Mercurial rade na istom principu; oba sustava imaju:
+			\begin{itemize}
+				\item \textbf{Radni direktorij} - mjesto gdje korisnik vrši sve operacije nad datotekama
+				\item \textbf{Stage} - područje gdje korisnik stavlja sve datoteke koje će sa sljedećim \textbf{\textit{commitom}} poslati u repozitorij
+				\item \textbf{Repozitorij} - mjesto gdje su sve datoteke (i njihove prethodne verzije, ukoliko postoje) pohranjene.
+			\end{itemize}
+			\item Korisnik uvijek radi na nekom projektu u \textbf{Radnom direktoriju} gdje kreira nove datoteke, uređuje ili briše stare itd., te kad želi pohraniti podatke sa kojima je završio raditi u repozitorij on ih prvo dodaje u \textbf{Stage}.
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Naredbe za dodavanje datoteka u repozitorij i provjeru stanja(2/3)}
+		\begin{itemize}
+			\item No prije nego što korisnik doda datoteke u \textbf{Stage}, bilo bi dobro da pomoću naredbe \textbf{status} provjeri stanje datoteka.
+			\item Sintaksa za to u Mercurialu glasi:
+			\begin{itemize}
+				\item \textbf{hg status} - ukoliko datoteka nije poznata Mercurialu, prilikom ispisa pored imena datoteke će stajati upitnik \textbf{\textit{(?)}}
+				\item Nakon što korisnik doda datoteku u \textbf{Stage} i ponovno upotrijebi naredbu \textbf{hg status} vidjeti će da sada prilikom ispisa stoji slovo \textbf{\textit{(A)}} što označava da su datoteke uspješno dodane u \textbf{Stage}.
+			\end{itemize}
+			\item 
+		\end{itemize}
+	\end{frame}
+
+% Još nekoliko frameova od kolege Šešet
+
+	\begin{frame}
+		\frametitle{Pregled i usporedba verzija 1 - log}
+		\begin{itemize}
+			\item Jedna od najkorisnijih opcija VCS-a jest mogućnost pregleda cijele povijesti naših projekata. Za to koristimo opciju \textbf{git log} ili \textbf{hg log}.
+			\item Oba sustava prikazat će nam neke informacije o svakom commitu koji smo do tog trenutka napravili - autora, datum, kratak opis i heksadekadska šifra pod kojom je spremljen taj commit.
+			\item Takav prikaz kod većih projekata može biti dugačak i nepregledan. Možemo ga pojednostaviti:
+			\begin{itemize}
+				\item git log --oneline --graph --decorate --all
+				\item hg log --graph
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Pregled i usporedba verzija 2 - diff}
+		\begin{itemize}
+			\item Ako želimo vidjeti učinjene promjene, koristimo opciju \textbf{git diff} ili \textbf{hg diff}. Ona će (bez dodatnih argumenata) prikazati razlike između zadnje verzije i onoga što se nalazi u radnom direktoriju.
+			\item Posebno su istaknute one linije u kojima je došlo do promjene. \\
+				Popis za kupovinu\\
+				\textcolor{red}{- kupi mlijeko}\\
+				\textcolor{green}{+ kupi kruh}
+			\item Ako ga zanimaju razlike između određenih verzija, korisnik Gita unijet će komandu \textbf{git diff SHA1 SHA2}, a korisnik Mercuriala \textbf{hg diff –r SHA1 -r SHA2}.
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Grananje 1}
+		\begin{itemize}
+			\item Ako ne želimo remetiti glavni tok dok razvijamo koristit ćemo opcije grananja.
+			\item Standardno ime za glavnu granu razvoja u Gitu je master, a u Mercurialu default.
+			\item U Gitu su grane pokazivač na jedan commit, i stvaraju se vrlo jednostavno.
+			\begin{lstlisting}
+				git branch feature
+				ILI
+				git checkout –b feature   za automatsko prebacivanje na novu granu
+			\end{lstlisting}
+		\end{itemize}
+	\end{frame}
+ 
+	\begin{frame}
+		\frametitle{Grananje 2}
+		\begin{itemize}
+			\item U Mercurialu postoji nekoliko načina da stvorimo granu. 
+			\begin{itemize}
+				\item Najjednostaviji je onaj u kojem nadopunjujemo neku prijašnju verziju koirsteći \textbf{hg update --check} i \textbf{hg commit}. Ipak, tako gubimo mogućnost imenovanja grane razvoja i otežavamo si snalaženje (ako ne koristimo tagiranje).
+				\item Bookmarksi su slični Gitovim pokazivačima na commit. Doduše, oni su isključivo lokalne oznake, tako da se prilikom pushanja i pullanja neće prenijeti.
+				\begin{lstlisting}
+					hg bookmark main
+					hg bookmark feature
+					hg update feature (analogno git checkout, prebacivanje na granu)
+				\end{lstlisting}
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Grananje 3}
+		\begin{itemize}
+			\begin{itemize}
+				\item Imenovane grane u Mercurialu su specifične zato što je ime grane jedan od meta-podataka koji će biti uključen u sam commit. Nakon stvaranja grane moramo pokrenuti \textit{hg commit} kako bi se spremilo novo stanje radnog direktorija i kako bismo mogli nastaviti naš rad.
+				\begin{lstlisting}
+					hg branch feature
+					hg commit –m “start feature branch”
+				\end{lstlisting}
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Spajanje 1}
+		\begin{itemize}
+			\item U većini slučajeva, cilj nam je spojiti grane u glavni tok razvoja kako bismo ga ažurirali. To činimo koristeći opciju \textbf{git merge} ili \textbf{hg merge}.
+			\item Ako koristimo Mercurial, ne smijemo zaboraviti \textit{hg commit}. Kao i kod stvaranja grana, Mercurial nam neće automatski omogućiti daljni rad ako preskočimo ovaj korak. \\ U Gitu nije potrebno izvršiti commit (osim ako nije došlo do konflikata).
+			\item Ako spajamo dvije grane koje na istom mjestu u dokumentu nude drugačije podatke pojavit će se konflikte. Njih moramo sami popraviti.
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Spajanje 2}
+		\begin{itemize}
+			\item Za jednostavniju povijest razvoja možemo koristiti opciju \textbf{git rebase} ili \textbf{hg rebase} kojom sve promjene nastale nakon nekog trenutka selimo na kraj našeg glavnog toka.
+			\begin{lstlisting}
+				git rebase master	ime grane koju želimo nadopuniti
+ 				git checkout master
+				git merge feature	kako bi uskladili dva HEAD pokazivača
+				ILI
+				 hg rebase –s SHA1 -d SHA2	    sve promjene nastale nakon SHA1 se sele na SHA2
+			\end{lstlisting}
+		\end{itemize}
+	\end{frame}
+
+\end{document}
