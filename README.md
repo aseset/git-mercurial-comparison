@@ -24,3 +24,15 @@ Usporedba Git i Mercurial sustava za upravljanje inačicama - projekt za kolegij
 - stash
 
 - clone, remote, fetch, push, pull
+
+### linkovi
+
+- http://alliancevoc.ac.ug/wp-content/uploads/2017/01/VersionControlByExample.pdf
+
+- http://hgbook.red-bean.com/read/
+
+- https://www.mercurial-scm.org/guide
+
+- https://www.mercurial-scm.org/wiki/BeginnersGuides
+
+- https://git-scm.com/book/en/v2
